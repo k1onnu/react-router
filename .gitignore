@@ -1,0 +1,53 @@
+# Зависимости
+/node_modules
+/.pnp
+.pnp.js
+.pnp.loader.mjs
+
+# Тесты
+/coverage
+
+# Сборка
+/build
+/dist
+
+# Локальное окружение
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Логи
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Редакторы и IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Отладочные файлы
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Временные папки
+.temp
+.tmp
+.cache
+
+# Файлы сборки
+*.tsbuildinfo
+
+# Скриншоты тестов
+/screenshots
+
+# Папка для резервных копий
+*.bak
