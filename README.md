@@ -25,6 +25,10 @@
 - Тесты (Jest + React Testing Library) - 5 тестов пройдено
 - Lighthouse: Performance 100, Accessibility 100
 
+## Результаты Lighthouse
+
+![Lighthouse Results](./statistics.jpg)
+
 ## Технологии
 
 - React 18
