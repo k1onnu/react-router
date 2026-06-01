@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { api } from '../services/api';
@@ -12,11 +12,8 @@ function Details() {
   const [error, setError] = useState(null);
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
 
-  useEffect(() => {
-    loadProduct();
-  }, [id]);
-
-  const loadProduct = async () => {
+  // useCallback - мемоизируем функцию загрузки товара
+  const loadProduct = useCallback(async () => {
     try {
       setLoading(true);
       const data = await api.getProductById(id);
@@ -27,15 +24,22 @@ function Details() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
-  const handleFavoriteToggle = () => {
+  useEffect(() => {
+    loadProduct();
+  }, [loadProduct]);
+
+  // useCallback - мемоизируем функцию переключения избранного
+  const handleFavoriteToggle = useCallback(() => {
+    if (!product) return;
+    
     if (isFavorite(product.id)) {
       removeFromFavorites(product.id);
     } else {
       addToFavorites(product);
     }
-  };
+  }, [product, isFavorite, addToFavorites, removeFromFavorites]);
 
   if (loading) return <Loader />;
   
@@ -73,7 +77,7 @@ function Details() {
           onClick={handleFavoriteToggle}
           className={`${styles.favoriteButton} ${isFavorite(product.id) ? styles.active : ''}`}
         >
-          {isFavorite(product.id) ? '🖤 В избранном' : '🤍 Добавить в избранное'}
+          {isFavorite(product.id) ? '★ В избранном' : '☆ Добавить в избранное'}
         </button>
       </div>
     </div>

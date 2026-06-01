@@ -29,6 +29,14 @@ function Navigation() {
             Товары
           </NavLink>
           <NavLink 
+            to="/favourites" 
+            className={({ isActive }) => 
+              isActive ? `${styles.link} ${styles.active}` : styles.link
+            }
+          >
+            ❤️ Избранное ({favorites.length})
+          </NavLink>
+          <NavLink 
             to="/about" 
             className={({ isActive }) => 
               isActive ? `${styles.link} ${styles.active}` : styles.link
@@ -36,9 +44,6 @@ function Navigation() {
           >
             О нас
           </NavLink>
-          <div className={styles.favoritesBadge}>
-            🖤 {favorites.length}
-          </div>
         </div>
       </div>
     </nav>
