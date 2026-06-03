@@ -47,3 +47,32 @@
     border-radius: 20px;
     font-size: 0.9rem;
   }
+
+  .authSection {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(255,255,255,0.2);
+  }
+  
+  .userName {
+    color: #4ecdc4;
+    font-size: 0.9rem;
+  }
+  
+  .logoutButton {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+  }
+  
+  .logoutButton:hover {
+    background-color: #c0392b;
+  }

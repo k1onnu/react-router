@@ -1,9 +1,17 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useFavorites } from '../contexts/FavoritesContext';
+import { useAuth } from '../contexts/AuthContext';
 import styles from './Navigation.module.css';
 
 function Navigation() {
   const { favorites } = useFavorites();
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <nav className={styles.nav}>
@@ -44,6 +52,28 @@ function Navigation() {
           >
             О нас
           </NavLink>
+          
+          <div className={styles.authSection}>
+            {isAuthenticated ? (
+              <>
+                <span className={styles.userName}>
+                  👤 {user?.name || user?.email || 'Пользователь'}
+                </span>
+                <button onClick={handleLogout} className={styles.logoutButton}>
+                  Выйти
+                </button>
+              </>
+            ) : (
+              <NavLink 
+                to="/login" 
+                className={({ isActive }) => 
+                  isActive ? `${styles.link} ${styles.active}` : styles.link
+                }
+              >
+                Войти
+              </NavLink>
+            )}
+          </div>
         </div>
       </div>
     </nav>
